@@ -9,6 +9,7 @@ pub struct Note {
     octave: u8,
 }
 
+// Todo: Setters maybe
 impl Note {
     pub fn pitch(&self) -> Pitch {
         self.pitch

@@ -32,26 +32,23 @@ impl TimeSignature {
 }
 
 fn validate_upper(value: u8) -> Result<(), InvalidTimeSignatureError> {
-    if value == 0 {
-        Err(InvalidTimeSignatureError::CannotBeZero {
+    match value {
+        0 => Err(InvalidTimeSignatureError::CannotBeZero {
             name: "Upper",
             desc: "beats per measure",
-        })
-    } else {
-        Ok(())
+        }),
+        _ => Ok(())
     }
 }
 
 fn validate_lower(value: u8) -> Result<(), InvalidTimeSignatureError> {
-    if value == 0 {
-        Err(InvalidTimeSignatureError::CannotBeZero {
+    match value {
+        0 => Err(InvalidTimeSignatureError::CannotBeZero {
             name: "Lower",
             desc: "beat unit",
-        })
-    } else if !value.is_power_of_two() {
-        Err(InvalidTimeSignatureError::LowerNotPowerOfTwo(value))
-    } else {
-        Ok(())
+        }),
+        _ if !value.is_power_of_two() => Err(InvalidTimeSignatureError::LowerNotPowerOfTwo(value)),
+        _ => Ok(()),
     }
 }
 
