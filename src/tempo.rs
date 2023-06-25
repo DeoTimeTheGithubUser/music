@@ -1,8 +1,8 @@
-use std::ops::{Range, RangeFrom, RangeFull, RangeInclusive};
+use std::ops::RangeInclusive;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub struct Tempo {
-    pub bpm: u8
+    pub bpm: u8,
 }
 
 pub trait IntoTempo {
@@ -14,7 +14,6 @@ impl IntoTempo for u8 {
         Tempo { bpm: self }
     }
 }
-
 
 pub type TempoKind = RangeInclusive<Tempo>;
 
