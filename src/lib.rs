@@ -4,6 +4,7 @@ pub mod time_signature;
 pub mod pitch;
 pub mod note;
 pub mod accidental;
+pub mod tempo;
 
 pub use pitch::Pitch;
 pub use note::Note;
