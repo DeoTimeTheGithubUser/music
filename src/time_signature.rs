@@ -37,7 +37,7 @@ fn validate_upper(value: u8) -> Result<(), InvalidTimeSignatureError> {
             name: "Upper",
             desc: "beats per measure",
         }),
-        _ => Ok(())
+        _ => Ok(()),
     }
 }
 

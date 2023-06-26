@@ -9,5 +9,5 @@ pub mod time_signature;
 pub use accidental::Accidental;
 pub use note::Note;
 pub use pitch::Pitch;
-pub use time_signature::TimeSignature;
 pub use tempo::Tempo;
+pub use time_signature::TimeSignature;
