@@ -1,4 +1,5 @@
 use std::ops::RangeInclusive;
+use std::sync::atomic::{AtomicBool, AtomicI32, AtomicU8};
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub struct Tempo {

@@ -40,3 +40,13 @@ impl Display for Pitch {
 #[derive(Error, Debug)]
 #[error("invalid pitch \"{0}\"")]
 pub struct InvalidPitchError(char);
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_from_char() {
+        assert!(matches!(Pitch::try_from('h'), Err(e @ InvalidPitchError(_)) if e.to_string() == "invalid pitch \"h\""));
+        assert!(matches!(Pitch::try_from('a'), Ok(Pitch::A)));
+    }
+}
