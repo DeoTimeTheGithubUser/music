@@ -24,10 +24,10 @@ impl TimeSignature {
     }
 
     pub fn set_beats_per_measure(&mut self, value: u8) -> Result<(), InvalidTimeSignatureError> {
-        validate_upper(value).inspect(|_| self.upper = value)
+        validate_upper(value).map(|_| self.upper = value)
     }
     pub fn set_beat_unit(&mut self, value: u8) -> Result<(), InvalidTimeSignatureError> {
-        validate_lower(value).inspect(|_| self.lower = value)
+        validate_lower(value).map(|_| self.lower = value)
     }
 }
 
