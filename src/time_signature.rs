@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use thiserror::Error;
 
 pub struct TimeSignature {
@@ -28,6 +29,12 @@ impl TimeSignature {
     }
     pub fn set_beat_unit(&mut self, value: u8) -> Result<(), Error> {
         validate_lower(value).map(|_| self.lower = value)
+    }
+}
+
+impl Display for TimeSignature {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} / {}", self.upper, self.lower)
     }
 }
 

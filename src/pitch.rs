@@ -70,8 +70,7 @@ impl Display for Accidental {
 
 impl Display for Pitch {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        Display::fmt(&self.pitch, f)?;
-        Display::fmt(&self.accidental, f)
+        write!(f, "{}{}", self.pitch, self.accidental)
     }
 }
 
