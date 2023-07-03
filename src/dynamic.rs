@@ -17,11 +17,10 @@ pub enum Dynamic {
 }
 
 impl Dynamic {
-    
     pub fn is_soft(&self) -> bool {
         (*self as i8) < 0
     }
-    
+
     pub fn is_loud(&self) -> bool {
         (*self as i8) > 0
     }
@@ -48,16 +47,15 @@ impl Dynamic {
             Dynamic::MezzoForte => "medium loud",
             Dynamic::Forte => "loud",
             Dynamic::Fortissimo => "very loud",
-            Dynamic::Fortississimo => "very, very loud"
+            Dynamic::Fortississimo => "very, very loud",
         }
     }
-    
 }
 
 #[cfg(test)]
 mod tests {
-    use strum::IntoEnumIterator;
     use super::*;
+    use strum::IntoEnumIterator;
 
     #[test]
     fn test_symbol() {
@@ -67,7 +65,7 @@ mod tests {
             } else {
                 assert!(x.symbol().contains('p'))
             }
-        };
+        }
     }
 
     #[test]
@@ -78,6 +76,6 @@ mod tests {
             } else {
                 assert!(x.description().contains("soft"))
             }
-        };
+        }
     }
 }
