@@ -15,7 +15,7 @@ pub enum Pitch {
 }
 
 impl TryFrom<char> for Pitch {
-    type Error = InvalidPitchError;
+    type Error = Error;
     fn try_from(value: char) -> Result<Self, Self::Error> {
         match value.to_ascii_lowercase() {
             'a' => Ok(Pitch::A),
@@ -25,7 +25,7 @@ impl TryFrom<char> for Pitch {
             'e' => Ok(Pitch::E),
             'f' => Ok(Pitch::F),
             'g' => Ok(Pitch::G),
-            _ => Err(InvalidPitchError(value)),
+            _ => Err(Error(value)),
         }
     }
 }
@@ -39,16 +39,14 @@ impl Display for Pitch {
 
 #[derive(Error, Debug)]
 #[error("invalid pitch \"{0}\"")]
-pub struct InvalidPitchError(char);
+pub struct Error(char);
 
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
     fn test_from_char() {
-        assert!(
-            matches!(Pitch::try_from('h'), Err(e @ InvalidPitchError(_)) if e.to_string() == "invalid pitch \"h\"")
-        );
+        assert!(matches!(Pitch::try_from('h'), Err(Error('h'))));
         assert!(matches!(Pitch::try_from('a'), Ok(Pitch::A)));
     }
 }
