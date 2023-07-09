@@ -1,10 +1,11 @@
-use crate::Pitch;
+use crate::{Duration, Pitch};
 use std::fmt::{Debug, Display, Formatter};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 pub struct Note {
     octave: u8,
     pitch: Pitch,
+    duration: Duration,
 }
 
 impl Display for Note {

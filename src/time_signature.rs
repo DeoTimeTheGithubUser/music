@@ -1,6 +1,7 @@
 use std::fmt::{Display, Formatter};
 use thiserror::Error;
 
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash)]
 pub struct TimeSignature {
     // beats per measure
     upper: u8,

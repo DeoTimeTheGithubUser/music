@@ -1,8 +1,8 @@
-use std::fmt::{Debug, Display, Formatter, Write};
+use std::fmt::{Debug, Display, Formatter};
 
 use thiserror::Error;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Copy, Clone, Debug, Ord, PartialOrd, Eq, PartialEq, Hash)]
 pub struct Pitch {
     pitch: Name,
     accidental: Accidental,
@@ -19,7 +19,7 @@ impl Pitch {
 }
 
 #[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash, strum::Display)]
+#[derive(Copy, Clone, Debug, Ord, PartialOrd, Eq, PartialEq, Hash, strum::Display)]
 pub enum Name {
     A = 0,
     B = 1,
@@ -33,39 +33,31 @@ pub enum Name {
 impl TryFrom<char> for Name {
     type Error = NameError;
     fn try_from(value: char) -> Result<Self, Self::Error> {
-        match value.to_ascii_lowercase() {
-            'a' => Ok(Name::A),
-            'b' => Ok(Name::B),
-            'c' => Ok(Name::C),
-            'd' => Ok(Name::D),
-            'e' => Ok(Name::E),
-            'f' => Ok(Name::F),
-            'g' => Ok(Name::G),
+        match value.to_ascii_uppercase() {
+            'A' => Ok(Name::A),
+            'B' => Ok(Name::B),
+            'C' => Ok(Name::C),
+            'D' => Ok(Name::D),
+            'E' => Ok(Name::E),
+            'F' => Ok(Name::F),
+            'G' => Ok(Name::G),
             _ => Err(NameError(value)),
         }
     }
 }
 
 #[repr(i8)]
-#[derive(Default, Debug, Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Default, Copy, Clone, Debug, Ord, PartialOrd, Eq, PartialEq, Hash, strum::Display)]
 pub enum Accidental {
+    #[strum(serialize = "♭")]
     Flat = -1,
 
     #[default]
+    #[strum(serialize = "♮")]
     Natural = 0,
 
+    #[strum(serialize = "♯")]
     Sharp = 1,
-}
-
-impl Display for Accidental {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let c = match self {
-            Accidental::Natural => '♮',
-            Accidental::Sharp => '♯',
-            Accidental::Flat => '♭',
-        };
-        f.write_char(c)
-    }
 }
 
 impl Display for Pitch {

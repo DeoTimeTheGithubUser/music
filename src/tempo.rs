@@ -1,6 +1,6 @@
 use std::ops::RangeInclusive;
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, Ord, PartialOrd)]
+#[derive(Copy, Clone, Debug, Ord, PartialOrd, Eq, PartialEq, Hash)]
 pub struct Tempo {
     pub bpm: u8,
 }

@@ -1,7 +1,8 @@
 use std::fmt::Debug;
 
 #[repr(i8)]
-#[derive(Debug, Copy, Clone, Ord, PartialOrd, Eq, PartialEq, strum::Display, strum::EnumIter)]
+#[derive(Copy, Clone, Debug, Ord, PartialOrd, Eq, PartialEq, Hash, strum::Display)]
+#[cfg_attr(test, derive(strum::EnumIter))]
 pub enum Dynamic {
     Pianississimo = -4,
     Pianissimo = -3,
